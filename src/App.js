@@ -64,7 +64,7 @@ const App = () => {
                         path="/browse"
                         render={() => currentUser
                             ? <Homepage />
-                            : <Redirect to="/login" />}
+                            : <Homepage />}
                     />
                     <Route
                         exact

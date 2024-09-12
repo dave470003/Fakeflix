@@ -29,7 +29,25 @@ const Banner = ({ type }) => {
 
 	const myData = useSelector(selector);
 	const { loading, error, data: results } = myData;
-	const finalData = results[randomize(results)];
+	const oldFinalData = results[randomize(results)];
+	const finalData = {
+		"adult": false,
+		"backdrop_path": "test1.jpg",
+		"genre_ids": oldFinalData?.genre_ids,
+		"id": 63333,
+		"origin_country": [
+			"GB"
+		],
+		"original_language": "en",
+		"original_name": "The Quest for the Perfect Ring",
+		"overview": "A traveller peruses the country in search of the perfect proposal. Encountering hardships, peril, and a host of strange people, will he find the answers he's been looking for?",
+		"popularity": 288.445,
+		"poster_path": "/8eJf0hxgIhE6QSxbtuNCekTddy1.jpg",
+		"first_air_date": "2015-10-10",
+		"name": "The Quest for the Perfect Ring",
+		"vote_average": 8.262,
+		"vote_count": 1679,
+	}
 	const fallbackTitle = finalData?.title || finalData?.name || finalData?.original_name;
 	const description = truncate(finalData?.overview, 150);
 	const dispatch = useDispatch();
@@ -41,6 +59,9 @@ const Banner = ({ type }) => {
 	const handleModalOpening = () => {
 		dispatch(showModalDetail({ ...finalData, fallbackTitle }));
 	}
+
+	console.log(myData);
+	console.log(finalData);
 
 	return (
 		<>
@@ -61,8 +82,12 @@ const Banner = ({ type }) => {
 					initial='initial'
 					animate='animate'
 					exit='exit'
-					className="Banner"
-					style={{backgroundImage: `url(${BASE_IMG_URL}/${finalData?.backdrop_path})`}}
+					test={BASE_IMG_URL}
+					className={"Banner"}
+					style={{
+						backgroundImage: `url(${finalData?.backdrop_path})`,
+						backgroundPosition: "center"
+					}}
 				>
 					<motion.div
 						className="Banner__content"

@@ -8,6 +8,7 @@ import { defaultPageFadeInVariants } from "../../motionUtils";
 
 const Homepage = () => {
     const rows = useRetrieveData('movies');
+    console.log(rows)
 
     return (
         <motion.div
